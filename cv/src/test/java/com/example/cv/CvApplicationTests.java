@@ -10,17 +10,4 @@ import java.util.List;
 
 @SpringBootTest
 class CvApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-	@Autowired
-	private  userRepository userRepository;
-	@Test
-	public void findByNameMethod()
-	{
-		List<users> us = userRepository.findAll();
-		us.stream().forEach(System.out::println);
-	}
-
 }
