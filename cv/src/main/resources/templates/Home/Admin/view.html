@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Product List</title>
+    <style>
+        .table{
+            width:100%;
+        }
+    </style>
 </head>
 <body>
+    <h2>Product List</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Create At</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${product}">
+                <td th:text="${product.Id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.descrption}"></td>
+                <td th:text="${product.Category}"></td>
+                <td th:text="${product.price}"></td>
+                <td>
+                    <img th:src="@{'/static/img/' +${product.imageFileName}}" alt="..." width="100">
+                </td>                
+                <td th:text="${product.createdAt}"></td>
+                <td>
+                    <a href="">Edit</a>
+                    <a href="">Delete</a>
+                </td>
 
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

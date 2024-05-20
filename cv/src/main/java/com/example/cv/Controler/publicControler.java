@@ -1,14 +1,8 @@
 package com.example.cv.Controler;
 
-import com.example.cv.Dto.loginDto;
-import com.example.cv.Dto.signupDto;
-import com.example.cv.Model.Role;
-import com.example.cv.Model.users;
-import com.example.cv.Repository.rolerRepository;
-import com.example.cv.Repository.userRepository;
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Collection;
+import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +14,24 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Collection;
-import java.util.Collections;
+import com.example.cv.Dto.loginDto;
+import com.example.cv.Dto.signupDto;
+import com.example.cv.Model.Role;
+import com.example.cv.Model.users;
+import com.example.cv.Repository.rolerRepository;
+import com.example.cv.Repository.userRepository;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping("/public")
@@ -66,14 +74,16 @@ public class publicControler {
         return "/login_logout/signin";
     }
     @PostMapping(value = "/si1")
-    public ResponseEntity<String> signin(@ModelAttribute loginDto loginDto) {
-        System.out.println(loginDto.getNameOremail());
-        System.out.println(loginDto.getPassword());
+    public String signin(@ModelAttribute @Valid loginDto loginDto, BindingResult result) {
+        if(result.hasErrors())
+        {
+            return "/login_logout/signin";
+        }
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(
                         loginDto.getNameOremail(),loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new ResponseEntity<>("signin__Succsessfull", HttpStatus.OK);
+        return "/login_logout/signin";
     }
     @GetMapping("/sinnup")
     public String signup()
@@ -81,7 +91,7 @@ public class publicControler {
         return "/login_logout/signup";
     }
     @PostMapping(value = "/si2")
-    public ResponseEntity<String> signup(@ModelAttribute signupDto signupDto) {
+    public ResponseEntity<String> signup(@ModelAttribute @Valid signupDto signupDto) {
         if(userRepository.existsByEmail(signupDto.getEmail()))
         {
             return new ResponseEntity<>("Email Already Exist", HttpStatus.CONFLICT);

@@ -1,31 +1,27 @@
 package com.example.cv.securitys;
 
-import com.example.cv.Model.users;
-import com.example.cv.Services.customUserDetailsServices;
-import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.web.HttpSecurityBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.example.cv.Services.customUserDetailsServices;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 @Slf4j
 public class securityConfig {
+    @Autowired
     private customUserDetailsServices customUserDetailsServices;
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -41,7 +37,7 @@ public class securityConfig {
                 .authorizeHttpRequests((authorize) -> {
                     authorize.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                             .requestMatchers("/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                            .requestMatchers("/public/**","/templates/**","/resources/**","/static/**").permitAll()
+                            .requestMatchers("/public/**","/templates/**","/static/**","/img/**").permitAll()
                             .anyRequest().authenticated();
                 }).formLogin(formLogin -> formLogin
                                 .loginPage("/public/signin")

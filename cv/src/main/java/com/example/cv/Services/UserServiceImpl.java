@@ -1,16 +1,16 @@
 package com.example.cv.Services;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import com.example.cv.Model.Role;
 import com.example.cv.Model.users;
 import com.example.cv.Repository.rolerRepository;
 import com.example.cv.Repository.userRepository;
+
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

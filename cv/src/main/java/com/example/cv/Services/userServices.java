@@ -1,9 +1,9 @@
 package com.example.cv.Services;
 
+import org.springframework.stereotype.Service;
+
 import com.example.cv.Model.Role;
 import com.example.cv.Model.users;
-import org.apache.catalina.User;
-import org.springframework.stereotype.Service;
 
 @Service
 public interface userServices {

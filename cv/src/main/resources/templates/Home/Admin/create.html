@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+</head>
+<body>
+    <h2>Add Product</h2>
+    <form th:action="@{/admin/products/add}" th:object="${productDto}" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" />
+        </div>
+        <div>
+            <label for="brand">Brand:</label>
+            <input type="text" id="brand" th:field="*{brand}" />
+        </div>
+        <div>
+            <label for="category">Category:</label>
+            <input type="text" id="category" th:field="*{category}" />
+        </div>
+        <div>
+            <label for="category">description：</label>
+            <input type="text" id="description" th:field="*{description}" />
+        </div>
+        <div>
+            <label for="price">Price:</label>
+            <input type="number" id="price" th:field="*{price}" />
+        </div>
+        <div>
+            <label for="imageFile">Image:</label>
+            <input type="file" id="imageFile" name="imageFile" />
+        </div>
+        <div>
+            <button type="submit">Add Product</button>
+        </div>
+    </form>
+</body>
+</html>
