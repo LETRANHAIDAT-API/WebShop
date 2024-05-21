@@ -10,12 +10,10 @@ import com.example.cv.Repository.userRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
-@Slf4j
 public class UserServiceImpl implements userServices{
 
     private  userRepository userRepository;

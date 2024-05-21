@@ -32,7 +32,7 @@
                 <td th:text="${product.Category}"></td>
                 <td th:text="${product.price}"></td>
                 <td>
-                    <img th:src="@{'/static/img/' +${product.imageFileName}}" alt="..." width="100">
+                    <img th:src="@{'/static/img/' +${product.imageFileName}}" alt="..." width="100px" height="100px">
                 </td>                
                 <td th:text="${product.createdAt}"></td>
                 <td>
@@ -43,5 +43,6 @@
             </tr>
         </tbody>
     </table>
+    <a th:href="@{/admin/create}">Create</a>
 </body>
 </html>

@@ -28,7 +28,6 @@ import jakarta.validation.Valid;
 @RequestMapping("/admin")
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 public class adminControler {
-    private static final String UPLOAD_DIR ="/img/";
     @Autowired
     private ProductServicesImpl productServicesImpl;
     @GetMapping("/Home")
@@ -54,12 +53,14 @@ public class adminControler {
         p.setDescrption(productDto.getDescription());
         MultipartFile imageFile = productDto.getImageFile();
         if (imageFile != null && !imageFile.isEmpty()) {
-                String fileName = UUID.randomUUID().toString() + "_" + imageFile.getOriginalFilename();
-                Path filePath = Paths.get(UPLOAD_DIR, fileName);
-                Files.createDirectories(filePath.getParent());
-                Files.write(filePath, imageFile.getBytes());
-                p.setImageFileName(fileName);
-        }   
+            String originalFileName = imageFile.getOriginalFilename();
+            String fileName = UUID.randomUUID().toString() + "_" + originalFileName;
+            String UPLOAD_DIR = "cv/src/main/resources/static/img/";
+            Path filePath = Paths.get(UPLOAD_DIR, fileName);
+            Files.createDirectories(filePath.getParent());
+            Files.write(filePath, imageFile.getBytes());
+            p.setImageFileName(fileName);
+        }
         productServicesImpl.Add(p);
         return "redirect:/admin/Home";
     }

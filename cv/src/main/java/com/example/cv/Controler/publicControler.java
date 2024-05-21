@@ -31,8 +31,6 @@ import com.example.cv.Repository.userRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-@Slf4j
 @Controller
 @RequestMapping("/public")
 @RequiredArgsConstructor
