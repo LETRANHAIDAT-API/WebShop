@@ -36,10 +36,9 @@
                 </td>                
                 <td th:text="${product.createdAt}"></td>
                 <td>
-                    <a href="">Edit</a>
-                    <a href="">Delete</a>
+                    <!-- <a th:href="">Edit</a> -->
+                    <a th:href="@{/admin/delete(id=${product.Id})}">Delete</a>
                 </td>
-
             </tr>
         </tbody>
     </table>

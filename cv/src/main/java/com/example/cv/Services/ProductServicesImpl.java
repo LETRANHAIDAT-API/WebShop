@@ -20,5 +20,10 @@ public class ProductServicesImpl implements ProductServices{
     {
         productRepository.save(p);
     }
+
+    @Override
+    public void delete(Long Id) {
+        productRepository.deleteById(Id);
+    }
     
 }
