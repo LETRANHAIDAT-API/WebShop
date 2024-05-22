@@ -29,6 +29,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/admin")
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 public class adminControler {
+    private static final String UPLOAD_DIR = "cv/src/main/resources/static/img/";
     @Autowired
     private ProductServicesImpl productServicesImpl;
     @GetMapping("/Home")
@@ -56,7 +57,6 @@ public class adminControler {
         if (imageFile != null && !imageFile.isEmpty()) {
             String originalFileName = imageFile.getOriginalFilename();
             String fileName = UUID.randomUUID().toString() + "_" + originalFileName;
-            String UPLOAD_DIR = "cv/src/main/resources/static/img/";
             Path filePath = Paths.get(UPLOAD_DIR, fileName);
             Files.createDirectories(filePath.getParent());
             Files.write(filePath, imageFile.getBytes());
@@ -68,7 +68,8 @@ public class adminControler {
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Long Id)
     {
-        productServicesImpl.delete(Id);
+        
+        productServicesImpl.delete(Id, UPLOAD_DIR);
         return "redirect:/admin/Home";
     }
 }

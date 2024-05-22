@@ -1,5 +1,9 @@
 package com.example.cv.Services;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +26,25 @@ public class ProductServicesImpl implements ProductServices{
     }
 
     @Override
-    public void delete(Long Id) {
-        productRepository.deleteById(Id);
+    public Boolean delete(Long Id,String urlfile) {
+        return productRepository.findById(Id).map(imgs ->
+        {
+            String filename = imgs.getImageFileName();
+            Path p = Paths.get(urlfile,filename );
+            
+                productRepository.deleteById(Id);
+                try {
+                    if(Files.deleteIfExists(p))
+                    {
+                        return true;
+                    }else
+                    {
+                        return false;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            return true;
+        }).orElse(false);
     }
-    
 }

@@ -9,5 +9,5 @@ import com.example.cv.Model.Product;
 @Service
 public interface ProductServices {
        List<Product> show();
-       void delete(Long Id);
+       Boolean delete(Long Id,String fileName);
 }
