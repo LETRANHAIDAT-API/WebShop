@@ -8,9 +8,10 @@
             width:100%;
         }
     </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/output.css}">
 </head>
 <body>
-    <h2>Product List</h2>
+    <h2 class="text-center text-red-900">Product List</h2>
     <table class="table">
         <thead>
             <tr>
@@ -42,6 +43,6 @@
             </tr>
         </tbody>
     </table>
-    <a th:href="@{/admin/create}">Create</a>
+    <a th:href="@{/admin/create}" class="text-center">Create</a>
 </body>
 </html>

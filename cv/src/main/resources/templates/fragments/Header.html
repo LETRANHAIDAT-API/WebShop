@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <body>
+        <header th:fragment="header">
+            <nav class="flex justify-around h-20">
+                <ul class="flex space-x-4 pt-4">
+                    <li class="hover:underline"><a href="#">Vào Cửa Hàng</a></li>
+                    <li class="flex space-x-2">
+                        <span>Kết Nối</span>
+                        <a href="https://www.facebook.com/profile.php?id=61556964275307" class="text-blue-600">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="flex space-x-4 pt-4">
+                    <li class="flex space-x-2">
+                        <span>Trợ Giúp</span>
+                        <a href="#">
+                            <i class="fa-solid fa-gears"></i>
+                        </a>
+                    </li>
+                    <li class="hover:underline "><a href="#">Hướng Dẫn</a></li>
+                    <li class="hover:underline "><a href="/public/signin">Đăng Nhập</a></li>
+                    <li class="hover:underline "><a href="/public/sinnup">Đăng Ký</a></li>
+                </ul>
+            </nav>
+        </header>
+    </body>
+</html>

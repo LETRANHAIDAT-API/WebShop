@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -89,11 +87,13 @@ public class publicControler {
         return "/login_logout/signup";
     }
     @PostMapping(value = "/si2")
-    public ResponseEntity<String> signup(@ModelAttribute @Valid signupDto signupDto) {
-        if(userRepository.existsByEmail(signupDto.getEmail()))
-        {
-            return new ResponseEntity<>("Email Already Exist", HttpStatus.CONFLICT);
-        }
+    public void signup(@Valid @ModelAttribute signupDto signupDto, BindingResult bindingResult) {
+        // if (userRepository.existsByEmail(signupDto.getEmail())) {
+        //     bindingResult.rejectValue("email", "email da ton tai");
+        // } 
+        // if (bindingResult.hasErrors()) {
+        //     return "/login_logout/signup";
+        // }
         users user = new users();
         user.setName(signupDto.getName());
         user.setEmail(signupDto.getEmail());
@@ -101,7 +101,8 @@ public class publicControler {
         Role role = rolerRepository.findByName("ROLE_USER");
         user.setRoles(Collections.singleton(role));
         userRepository.save(user);
-        return new ResponseEntity<>("signup__Succsessfull", HttpStatus.OK);
+        //return "redirect:/public/signin";
     }
+
 }
 

@@ -16,6 +16,8 @@
     <div>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
+        <!-- Thêm mã Thymeleaf để hiển thị lỗi -->
+        <!-- <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p> -->
     </div>
     <div>
         <label for="password">Password:</label>
@@ -25,6 +27,6 @@
         <button type="submit">Signup</button>
     </div>
 </form>
-        <a href="/public/signin">Da Co tai khoan</a>
+<a href="/public/signin">Da Co tai khoan</a>
 </body>
 </html>

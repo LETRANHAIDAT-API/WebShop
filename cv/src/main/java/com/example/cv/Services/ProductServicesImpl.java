@@ -47,4 +47,9 @@ public class ProductServicesImpl implements ProductServices{
             return true;
         }).orElse(false);
     }
+
+    @Override
+    public List<Product> findProducts(String findpr) {
+        return productRepository.findByName(findpr);
+    }
 }

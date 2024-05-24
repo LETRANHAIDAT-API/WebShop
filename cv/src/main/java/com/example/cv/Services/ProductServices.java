@@ -10,4 +10,5 @@ import com.example.cv.Model.Product;
 public interface ProductServices {
        List<Product> show();
        Boolean delete(Long Id,String fileName);
+       List<Product> findProducts(String findpr);
 }

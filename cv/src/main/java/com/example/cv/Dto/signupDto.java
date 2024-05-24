@@ -1,6 +1,11 @@
 package com.example.cv.Dto;
 
-import lombok.*;
+import jakarta.validation.constraints.Email;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @Builder
@@ -10,5 +15,6 @@ import lombok.*;
 public class signupDto {
     private String name;
     private String email;
+    @Email(message = "emai da ton tai")
     private String password;
 }
