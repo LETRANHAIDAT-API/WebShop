@@ -50,6 +50,7 @@ public class ProductServicesImpl implements ProductServices{
 
     @Override
     public List<Product> findProducts(String findpr) {
+        findpr = findpr.strip();
         return productRepository.findByName(findpr);
     }
 }

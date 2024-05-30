@@ -87,7 +87,7 @@ public class publicControler {
         return "/login_logout/signup";
     }
     @PostMapping(value = "/si2")
-    public void signup(@Valid @ModelAttribute signupDto signupDto, BindingResult bindingResult) {
+    public String signup(@Valid @ModelAttribute signupDto signupDto, BindingResult bindingResult) {
         // if (userRepository.existsByEmail(signupDto.getEmail())) {
         //     bindingResult.rejectValue("email", "email da ton tai");
         // } 
@@ -102,6 +102,7 @@ public class publicControler {
         user.setRoles(Collections.singleton(role));
         userRepository.save(user);
         //return "redirect:/public/signin";
+        return "redirect:/public/signin";
     }
 
 }
